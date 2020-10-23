@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<BODY>
+<!--导航-->
+<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment Navigation-setting">
+    <div class="ui container container-setting">
+        <div class="ui inverted secondary stackable menu menu-setting">
+            <h2 class="ui teal header item h2-setting">Basco-Blog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="desktop icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="adjust icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tablet icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i
+                    class="american sign language interpreting icon"></i>关于我</a>
+
+            <div class="right m-item item m-mobile-hide" style="left: 20%">
+                <div class="ui icon inverted transparent i input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black button m-position-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--中间部分-->
+<div class="middle-setting m-padded-tb-large2">
+    <div class="ui container ">
+        <div class="ui stackable grid">
+            <!--这是左边的内容-->
+            <div class="eleven wide column">
+                <!--这是头部····-->
+                <div class="ui top attached segment m-padded-tb-large">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header">我的博客</h3>
+                        </div>
+                        <div class="right aligned column">
+                            共<h2 class="ui orange header" style="display: inline-block" th:text="${page.totalElements}">
+                            14</h2>篇
+                        </div>
+                    </div>
+                </div>
+
+                <!--这是中间部分的中间内容-->
+                <div class="ui attached segment m-padded-tb-large" style="padding-bottom: 0">
+                    <div class="ui vertical segment" th:each="blog : ${page.content}">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">【SpringBoot搭建个人博客】- 线上部署</a>
+                                </h3>
+                                <p class="m-text" th:text="|${blog.description}......|">
+                                    本文将从服务器购买后远程连接， 环境搭建，项目部署运行和域名访问来讲述SpringBoot搭建个人博客的线上部署，每一个步骤都有详细的说明，这一篇结束后，【SpringBoot搭建个人博客】所有功能都已完成，可以进行访问了......</p>
+                                <!--文章下面的东西-->
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui horizontal link list">
+                                            <div class="item">
+                                                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603422165848&di=01db3296451e6eb73b97394f225f3d55&imgtype=0&src=http%3A%2F%2F01.minipic.eastday.com%2F20170313%2F20170313143154_34db0a1cf5c8de1cb7f0e35f1b16ad8d_3.jpeg"
+                                                     alt="" class="ui avatar image" style="width: 30px;height: 30px"
+                                                    th:src="@{${blog.user.picture}}" >
+                                                <div class="content">
+                                                    <a href="#" class="header" th:text="${blog.user.nickname}">Basco</a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calender icon"></i>
+                                                <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-09-22</span>
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i><span th:text="${blog.views}">2222</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal label m-padded-tiny"
+                                           th:text="${blog.type.name}">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--猫猫图片-->
+                            <div class="five wide column">
+                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank" >
+                                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603422000981&di=85df3d5d1e84c2b79ff9bda9c252173f&imgtype=0&src=http%3A%2F%2Fdesk.fd.zol-img.com.cn%2Fg5%2FM00%2F02%2F0E%2FChMkJlbK5pqIcV7dAAQDU4JGja0AALKWgKa4WUABANr295.jpg"
+                                         style="width: 150px;height: 100px;left: 10%;top: 15px" alt="SHIT"
+                                         class="ui rounded image" th:src="@{${blog.firstPicture}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/*-->
+                <div class="ui attached segment m-padded-tb-large" style="padding-bottom: 0">
+                    <div class="ui vertical segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">【SpringBoot搭建个人博客】- 线上部署</h3>
+                                <p class="m-text">
+                                    本文将从服务器购买后远程连接，环境搭建，项目部署运行和域名访问来讲述SpringBoot搭建个人博客的线上部署，每一个步骤都有详细的说明，这一篇结束后，【SpringBoot搭建个人博客】所有功能都已完成，可以进行访问了......</p>
+                                <!--文章下面的东西-->
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui horizontal link list">
+                                            <div class="item">
+                                                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                                     alt="" class="ui avatar image" style="width: 30px;height: 30px">
+                                                <div class="content">
+                                                    <a href="#" class="header">Basco</a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calender icon"></i>2020-09-22
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>2222
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal label m-padded-tiny">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--猫猫图片-->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                         style="width: 150px;height: 100px;left: 10%;top: 15px" alt="SHIT"
+                                         class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment m-padded-tb-large" style="padding-bottom: 0">
+                    <div class="ui vertical segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">【SpringBoot搭建个人博客】- 线上部署</h3>
+                                <p class="m-text">
+                                    本文将从服务器购买后远程连接，环境搭建，项目部署运行和域名访问来讲述SpringBoot搭建个人博客的线上部署，每一个步骤都有详细的说明，这一篇结束后，【SpringBoot搭建个人博客】所有功能都已完成，可以进行访问了......</p>
+                                <!--文章下面的东西-->
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui horizontal link list">
+                                            <div class="item">
+                                                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                                     alt="" class="ui avatar image" style="width: 30px;height: 30px">
+                                                <div class="content">
+                                                    <a href="#" class="header">Basco</a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calender icon"></i>2020-09-22
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>2222
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal label m-padded-tiny">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--猫猫图片-->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                         style="width: 150px;height: 100px;left: 10%;top: 15px" alt="SHIT"
+                                         class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment m-padded-tb-large" style="padding-bottom: 0">
+                    <div class="ui vertical segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">【SpringBoot搭建个人博客】- 线上部署</h3>
+                                <p class="m-text">
+                                    本文将从服务器购买后远程连接，环境搭建，项目部署运行和域名访问来讲述SpringBoot搭建个人博客的线上部署，每一个步骤都有详细的说明，这一篇结束后，【SpringBoot搭建个人博客】所有功能都已完成，可以进行访问了......</p>
+                                <!--文章下面的东西-->
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui horizontal link list">
+                                            <div class="item">
+                                                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                                     alt="" class="ui avatar image" style="width: 30px;height: 30px">
+                                                <div class="content">
+                                                    <a href="#" class="header">Basco</a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calender icon"></i>2020-09-22
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>2222
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal label m-padded-tiny">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--猫猫图片-->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                         style="width: 150px;height: 100px;left: 10%;top: 15px" alt="SHIT"
+                                         class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment m-padded-tb-large" style="padding-bottom: 0">
+                    <div class="ui vertical segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">【SpringBoot搭建个人博客】- 线上部署</h3>
+                                <p class="m-text">
+                                    本文将从服务器购买后远程连接，环境搭建，项目部署运行和域名访问来讲述SpringBoot搭建个人博客的线上部署，每一个步骤都有详细的说明，这一篇结束后，【SpringBoot搭建个人博客】所有功能都已完成，可以进行访问了......</p>
+                                <!--文章下面的东西-->
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui horizontal link list">
+                                            <div class="item">
+                                                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                                     alt="" class="ui avatar image" th:src="@{${blog.firstPicture}}" style="width: 30px;height: 30px">
+                                                <div class="content">
+                                                    <a href="#" class="header">Basco</a>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calender icon"></i>2020-09-22
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>2222
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a href="#" target="_blank" class="ui teal label m-padded-tiny">认知升级</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--猫猫图片-->
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=225901733,3558122397&fm=26&gp=0.jpg"
+                                         style="width: 150px;height: 100px;left: 10%;top: 15px" alt="SHIT" th:src="@{${blog.firstPicture}}"
+                                         class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--*/-->
+
+                <!--这是底部-->
+                <div class="ui botton attached segment m-padded-tb-large" th:if="${page.totalPages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column" style="bottom: 11px">
+                            <div class="column">
+                                <a href="#" class="ui blue button" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}">上一页</a>
+                            </div>
+                        </div>
+                        <div class="right aligned column" style="bottom: 11px">
+                            <div class="column">
+                                <a href="#" class="ui blue button" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---------------分割线------------------>
+
+            <!--这是右边的内容-->
+            <div class="five wide column">
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="idea icon"></i>分类</div>
+                            <div class="column right aligned">
+                                <a href="#" th:href="@{/types/1}" target="_blank">more <i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--分类-->
+                    <div class="ui teal segment">
+                        <div class="ui fluid vertical menu">
+                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item" th:each="type : ${types}"><span th:text="${type.name}" >学习日志</span>
+                                <div class="ui teal label" th:text="${#arrays.length(type.blogs)}">13</div>
+                            </a>
+                            <!--/*-->
+                            <a href="#" target="_blank" class="item">学习日志
+                                <div class="ui teal label">13</div>
+                            </a>
+                            <a href="#" target="_blank" class="item">学习日志
+                                <div class="ui teal label">13</div>
+                            </a>
+                            <a href="#" target="_blank" class="item">学习日志
+                                <div class="ui teal label">13</div>
+                            </a>
+                            <a href="#" target="_blank" class="item">学习日志
+                                <div class="ui teal label">13</div>
+                            </a>
+                            <!--*/-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--标签-->
+                <div class="ui segments m-margin-top-large">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="target icon"></i>标签</div>
+                            <div class="column right aligned">
+                                <a href="#" target="_blank"  th:href="@{/tags/1}">more<i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui teal segment">
+                        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" class="ui teal label m-margin-tb-small" th:each="tag : ${tags}">
+                            <span th:text="${tag.name}">方法论</span>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">13</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="ui segments m-margin-top-large">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="ui eight wide column">
+                                <i class="bookmark icon"></i>最新博客
+                            </div>
+                            <div class="ui eight wide column right aligned">
+                                <a href="#">更多</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}">用户故事（User Story）</a>
+                    </div>
+                </div>
+
+                <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
+                <div class="ui centered card">
+                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="SHIT"
+                         class="ui rounded image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部标签--><!--three--><!--four-->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical center aligned segment footer-setting ">
+    <div class="ui inverted divided stackable grid m-padded-tb-large" style="font-size: 15px">
+        <div class="three wide column">
+            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="SHIT"
+                 class="ui left aligned rounded image img-setting"
+                 style="width: 110px">
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+            </div>
+        </div>
+
+        <div class="three wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+            </div>
+        </div>
+
+        <div class="seven wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <p>陈伟霆回应高铁上要签名的粉丝，表示自己当时戴着耳机，不知道具体发生了什么事情，签名照签好了，邮寄给你。</p>
+        </div>
+
+        <div class="ui inverted section divider divider-setting">
+            <br>
+            <br>
+            © 1997-2020 basco公司版权所有 About NetEase
+        </div>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</BODY>
+</html>
