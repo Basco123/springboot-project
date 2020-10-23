@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<BODY>
+<!--导航-->
+<nav class="ui inverted attached segment Navigation-setting" th:replace="_fragments :: menu(5)">
+    <div class="ui container container-setting">
+        <div class="ui inverted secondary stackable menu menu-setting">
+            <h2 class="ui teal header item h2-setting">分类</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="desktop icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="adjust icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tablet icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="active m-item item m-mobile-hide"><i
+                    class="american sign language interpreting icon"></i>关于我</a>
+
+            <div class="right m-item item m-mobile-hide" style="left: 20%">
+                <div class="ui icon inverted transparent i input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black button m-position-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--中间部分-->
+<div class="ui container">
+    <div class="ui grid m-margin-top-large">
+        <div class="ui ten wide column">
+            <img src="../static/images/girl.jpg" th:src="@{/images/girl.jpg}" alt="" class="ui rounded images"
+                 style="width: 600px;height: 500px">
+        </div>
+        <div class="ui six wide column">
+            <div class="ui attached top segment">
+                <h3 class="ui teal header">关于我</h3>
+            </div>
+
+            <div class="ui attached segment">
+                <p>陈伟霆回应高铁上要签名的粉丝，表示自己当时戴着耳机，不知道具体发生了什么事情，签名照签好了，邮寄给你。</p>
+
+                <p>陈伟霆回应高铁上要签名的粉丝，表示自己当时戴着耳机，不知道具体发生了什么事情，签名照签好了，邮寄给你。</p>
+            </div>
+            <div class="ui attached segment">
+                <div class="ui orange basic label m-margin-lr-large">编程</div>
+                <div class="ui orange basic label m-margin-lr-large">篮球</div>
+                <div class="ui orange basic label m-margin-lr-large">跑步</div>
+                <div class="ui orange basic label m-margin-lr-large">音乐</div>
+            </div>
+            <div class="ui attached segment">
+                <div class="ui attached segment">
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">spring</div>
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">JVM</div>
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">springboot</div>
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">mybatis</div>
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">zookeeper</div>
+                    <div class="ui teal basic label m-margin-lr-large m-margin-tb-small">dubbo</div>
+                </div>
+            </div>
+            <div class="ui bottom attached segment">
+                <button class="ui circular icon button m-margin-lr-large button github-button"><i
+                        class="github icon"></i></button>
+                <button class="ui circular icon button m-margin-lr-large button weixin-button"><i
+                        class="weixin icon"></i></button>
+                <button class="ui circular icon button m-margin-lr-large button qq-button"><i class="qq icon"></i>
+                </button>
+            </div>
+            <div class="ui flowing popup transition hidden weixin-qr">
+                <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 100px">
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+</div>
+<!--底部标签--><!--three--><!--four-->
+<footer th:replace="_fragments :: footer" class="ui inverted vertical center aligned segment footer-setting">
+    <div class="ui inverted divided stackable grid m-padded-tb-large" style="font-size: 15px">
+        <div class="three wide column">
+            <img src="../static/images/wechat.jpg" alt="SHIT" class="ui left aligned rounded image img-setting"
+                 style="width: 110px">
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item" target="_blank">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+            </div>
+        </div>
+
+        <div class="three wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+                <a href="#" class="item">用户故事(User Story) </a>
+            </div>
+        </div>
+
+        <div class="seven wide column">
+            <h4 class="ui inverted header" style="font-size: 15px">最新博客</h4>
+            <p>陈伟霆回应高铁上要签名的粉丝，表示自己当时戴着耳机，不知道具体发生了什么事情，签名照签好了，邮寄给你。</p>
+        </div>
+
+        <div class="ui inverted section divider divider-setting">
+            <br>
+            <br>
+            © 1997-2020 basco公司版权所有 About NetEase
+        </div>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.weixin-button').popup({
+        popup: $('.weixin-qr'),
+        position: 'bottom center'
+    });
+</script>
+
+</BODY>
+</html>
